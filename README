@@ -1,0 +1,9 @@
+Haskell Unit Tests
+=================
+
+Test written while learning Haskell.
+
+To run:
+$ ghci -i./HUnit-1.0/
+Prelude> :l [test_file]
+Prelude> runTestTT [test_list]
