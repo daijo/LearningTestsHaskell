@@ -42,5 +42,9 @@ testSum = TestCase (assertEqual "" 10 (sum [1,2,3,4]))
 
 testProduct = TestCase (assertEqual "" 24 (product [1,2,3,4]))
 
-listTests = TestList [TestLabel "testAppend" testAppend, TestLabel "testConcat" testConcat, TestLabel "testGetElement" testGetElement, TestLabel "testGetElement2" testGetElement2, TestLabel "testCompare" testCompare, TestLabel "testCompare2" testCompare2, TestLabel "testGetHead" testGetHead, TestLabel "testGetTail" testGetTail, TestLabel "testGetLast" testGetLast, TestLabel "testGetInit" testGetInit, TestLabel "testGetLength" testGetLength, TestLabel "testReverse" testReverse, TestLabel "testNull" testNull, TestLabel "testTake" testTake, TestLabel "testDrop" testDrop, TestLabel "testMaximum" testMaximum, TestLabel "testMinimum" testMinimum, TestLabel "testSum" testSum, TestLabel "testProduct" testProduct]
+testCycle = TestCase (assertEqual "" [1,2,3,1] (take 4 (cycle [1,2,3])))
+
+testRepeat = TestCase (assertEqual "" 5 (sum (take 5 (repeat 1))))
+
+listTests = TestList [TestLabel "testAppend" testAppend, TestLabel "testConcat" testConcat, TestLabel "testGetElement" testGetElement, TestLabel "testGetElement2" testGetElement2, TestLabel "testCompare" testCompare, TestLabel "testCompare2" testCompare2, TestLabel "testGetHead" testGetHead, TestLabel "testGetTail" testGetTail, TestLabel "testGetLast" testGetLast, TestLabel "testGetInit" testGetInit, TestLabel "testGetLength" testGetLength, TestLabel "testReverse" testReverse, TestLabel "testNull" testNull, TestLabel "testTake" testTake, TestLabel "testDrop" testDrop, TestLabel "testMaximum" testMaximum, TestLabel "testMinimum" testMinimum, TestLabel "testSum" testSum, TestLabel "testProduct" testProduct, TestLabel "testCycle" testCycle, TestLabel "testRepeat" testRepeat]
 
