@@ -10,4 +10,4 @@ testAllCombinations = TestCase (assertEqual "" [1,2,2,4,3,6] [x*y | x <- [1..3],
 
 testWithPredicate = TestCase (assertEqual "" "aniel" [c | c <- "Daniel", c `elem` ['a'..'z']])
 
-listTests = TestList [TestLabel "testFirst5EvenNumbers" testFirst5EvenNumbers, TestLabel "testAllCombinations" testAllCombinations, TestLabel "testWithPredicate" testWithPredicate]
+allTests = TestList [TestLabel "testFirst5EvenNumbers" testFirst5EvenNumbers, TestLabel "testAllCombinations" testAllCombinations, TestLabel "testWithPredicate" testWithPredicate]
