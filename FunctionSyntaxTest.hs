@@ -21,6 +21,14 @@ scaleVector (x, y) s = (s * x, s * y)
 secondInGenericTriple :: (a, b, c) -> b
 secondInGenericTriple (_, x, _) = x
 
+matchHead :: [a] -> a
+matchHead [] = error "Empty list!"
+matchHead (x:_) = x
+
+matchTail :: [a] -> [a]
+matchTail [] = error "Empty list!"
+matchTail (_:xs) = xs
+
 -- Test cases
 
 testBasicMatching = TestCase (do assertEqual "" "one" (matchingFunc 1)
@@ -36,4 +44,8 @@ testScaleVector = TestCase (assertEqual "" (1.5, 1.5) (scaleVector (1, 1) 1.5))
 testGenericTriple = TestCase (do assertEqual "" 2 (secondInGenericTriple (1, 2, 3))
                                  assertEqual "" "er" (secondInGenericTriple ('i', "er", 3)))
 
-allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple]
+testMatchHead = TestCase (assertEqual "" 1 (matchHead [1, 2, 3]))
+
+testMatchTail = TestCase (assertEqual "" [2, 3] (matchTail [1, 2, 3]))
+
+allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail]
