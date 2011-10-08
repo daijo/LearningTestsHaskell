@@ -34,6 +34,13 @@ secondLetterOf "" = "Empty String!"
 secondLetterOf (x:[]) = "One letter String!"
 secondLetterOf all@(x:y:xs) = "Second letter of " ++ all ++ " is " ++ [y]
 
+checkMopedAge :: Int -> String
+checkMopedAge age
+    | age < 15   = "You're too young to drive a moped."
+    | age == 15  = "You can drive a moped."
+    | age > 15   = "You're too old to drive a moped."
+    | otherwise  = "You are way off!"
+
 -- Test cases
 
 testBasicMatching = TestCase (do assertEqual "" "one" (matchingFunc 1)
@@ -57,5 +64,8 @@ testSecondLetterOf = TestCase (do assertEqual "" "Empty String!" (secondLetterOf
                                   assertEqual "" "One letter String!" (secondLetterOf "D")
                                   assertEqual "" "Second letter of Daniel is a" (secondLetterOf "Daniel"))
 
+testAge = TestCase (do assertEqual "" "You're too young to drive a moped." (checkMopedAge 14)
+                       assertEqual "" "You can drive a moped." (checkMopedAge 15)
+                       assertEqual "" "You're too old to drive a moped." (checkMopedAge 16))
 
-allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf]
+allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf, TestLabel "testAge" testAge]
