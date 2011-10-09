@@ -50,6 +50,11 @@ boxVolume (width, depth, height) =
 calcBoxVolumes :: [(Double, Double, Double)] -> [Double]
 calcBoxVolumes xs = [volume | (w, d, h) <- xs, let volume = w * d * h]
 
+getRelation :: String -> String
+getRelation name = name ++ " is your " ++ case name of "Sven-Arne" -> "father."
+                                                       "Kerstin" -> "mother."
+                                                       "Sofia" -> "sister."
+
 -- Test cases
 
 testBasicMatching = TestCase (do assertEqual "" "one" (matchingFunc 1)
@@ -83,4 +88,8 @@ testBoxVolume = TestCase (do assertEqual "" 0 (boxVolume (0, 0, 0))
 
 testBoxVolumes = TestCase (assertEqual "" [0, 1, 8] (calcBoxVolumes [(0, 0, 0), (1, 1, 1), (2, 2, 2)]))
 
-allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf, TestLabel "testAge" testAge, TestLabel "testBoxVolume" testBoxVolume, TestLabel "testBoxVolumes" testBoxVolumes]
+testGetRelation = TestCase (do assertEqual "" "Sven-Arne is your father." (getRelation "Sven-Arne")
+                               assertEqual "" "Kerstin is your mother." (getRelation "Kerstin")
+                               assertEqual "" "Sofia is your sister" (getRelation "Sofia"))
+
+allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf, TestLabel "testAge" testAge, TestLabel "testBoxVolume" testBoxVolume, TestLabel "testBoxVolumes" testBoxVolumes, TestLabel "testGetRelation" testGetRelation]
