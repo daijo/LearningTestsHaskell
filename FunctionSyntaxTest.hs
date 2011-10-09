@@ -36,10 +36,16 @@ secondLetterOf all@(x:y:xs) = "Second letter of " ++ all ++ " is " ++ [y]
 
 checkMopedAge :: Int -> String
 checkMopedAge age
-    | age < 15   = "You're too young to drive a moped."
-    | age == 15  = "You can drive a moped."
-    | age > 15   = "You're too old to drive a moped."
+    | age < mopedAge   = "You're too young to drive a moped."
+    | age == mopedAge  = "You can drive a moped."
+    | age > mopedAge   = "You're too old to drive a moped."
     | otherwise  = "You are way off!"
+    where mopedAge = 15
+
+boxVolume :: (Double, Double, Double) -> Double
+boxVolume (width, depth, height) =
+    let bottomArea = width * depth
+    in  bottomArea * height
 
 -- Test cases
 
@@ -68,4 +74,8 @@ testAge = TestCase (do assertEqual "" "You're too young to drive a moped." (chec
                        assertEqual "" "You can drive a moped." (checkMopedAge 15)
                        assertEqual "" "You're too old to drive a moped." (checkMopedAge 16))
 
-allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf, TestLabel "testAge" testAge]
+testBoxVolume = TestCase (do assertEqual "" 0 (boxVolume (0, 0, 0))
+                             assertEqual "" 1 (boxVolume (1, 1, 1))
+                             assertEqual "" 8 (boxVolume (2, 2, 2)))
+
+allTests = TestList [TestLabel "testBasicMatching" testBasicMatching, TestLabel "testFactorial" testFactorial, TestLabel "testScaleVector" testScaleVector, TestLabel "testGenericTriple" testGenericTriple, TestLabel "testMatchHead" testMatchHead, TestLabel "testMatchTail" testMatchTail, TestLabel "testSecondLetterOf" testSecondLetterOf, TestLabel "testAge" testAge, TestLabel "testBoxVolume" testBoxVolume]
